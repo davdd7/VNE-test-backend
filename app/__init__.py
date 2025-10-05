@@ -1,6 +1,7 @@
 from flask import Flask
 
 from app.models.products import db
+from app.routes.products import product_bp
 
 
 def create_app(test_config=None):
@@ -15,6 +16,11 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
 
     db.init_app(app)
+    app.register_blueprint(product_bp)
+
+    with app.app_context():
+        db.drop_all()
+        db.create_all()
 
     return app
 

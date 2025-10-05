@@ -15,7 +15,9 @@ class Product(db.Model):
     category_id = db.Column(db.Integer, db.ForeignKey("categories.id"), nullable=False)
     category = db.relationship("Category", back_populates="products")
 
-    size_associations = db.relationship("ProductSize", back_populates="product_ref")
+    size_associations = db.relationship("ProductSize",
+                                        back_populates="product_ref",
+                                        cascade="all, delete-orphan")
 
 
 class Size(db.Model):
