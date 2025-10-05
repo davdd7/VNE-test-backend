@@ -124,7 +124,7 @@ def create_product():
 
     for size_data in data.get("sizes", []):
         size = db.session.scalar(
-            select(Size).where(func.lower(Size.name) == func.lower(size_data)["size_name"])
+            select(Size).where(func.lower(Size.name) == func.lower(size_data["size_name"]))
         )
         if not size:
             size = Size(name=size_data["size_name"])
@@ -164,6 +164,6 @@ def delete_product(product_id):
 
     return jsonify(
         {
-            "status": True
+            "result": True
         }
     )

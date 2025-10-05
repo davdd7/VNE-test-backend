@@ -19,7 +19,6 @@ def create_app(test_config=None):
     app.register_blueprint(product_bp)
 
     with app.app_context():
-        db.drop_all()
         db.create_all()
 
     return app
